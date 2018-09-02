@@ -1,0 +1,65 @@
+<html>
+<head>
+	<title></title>
+	<script   src="https://code.jquery.com/jquery-3.2.1.min.js"   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script type="" src="https://rawgit.com/aterrien/jQuery-Knob/master/js/jquery.knob.js"></script>
+	<style type="text/css">
+		.c1{
+			height: 300px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<input type="text" value="75" class="dial red">
+		<input type="text" value="75" class="dial green">
+		<input type="text" value="75" class="dial blue">
+
+		<div class="container c1">
+			<h1 id="rgb"></h1>
+		</div>
+	</div>
+	<script>
+	    $(".dial").knob({
+	        'change' : function (v) { console.log(v); },
+	        'min': 0,
+		    'max': 255,
+		    'release' : function (v) { 
+		    	$("#rgb").text("rgb(" + $('.red').val() + ", "+ $('.green').val() + ", " + $('.blue').val() + ")") 
+		    	$(".c1").css("background-color", "rgb("+ $('.red').val() +", "+ $('.green').val() + "," + $('.blue').val() + ")");
+		    	}
+	    });
+
+		$('.red').trigger(
+		        'configure',
+		        {
+		            "fgColor":"#FF0000",
+		            "inputColor":"#FF0000",
+		        }
+		 );
+		$('.green').trigger(
+		        'configure',
+		        {
+		            "fgColor":"#00FF00",
+		            "inputColor":"#00FF00",
+		        }
+		 );
+		$('.blue').trigger(
+		        'configure',
+		        {
+		            "fgColor":"#0000FF",
+		            "inputColor":"#0000FF",
+		        }
+		 );
+		$("#rgb").text("rgb(" + $('.red').val() + ", "+ $('.green').val() + ", " + $('.blue').val() + ")")
+    	$(".c1").css("background-color", "rgb("+ $('.red').val() +", "+ $('.green').val() + "," + $('.blue').val() + ")");
+
+	</script>
+</body>
+</html>
